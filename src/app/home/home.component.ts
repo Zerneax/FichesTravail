@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import jsPDF from 'jspdf';
+import { HomeService } from '../services/home/home.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ export class HomeComponent implements OnInit {
   generateForm: FormGroup;
   calculations: Array<String> = [];
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+    private homeService: HomeService) { }
 
   ngOnInit() {
     this.initForm();
@@ -61,8 +63,8 @@ export class HomeComponent implements OnInit {
   generateAdds() {
 
     for(var i = 0; i < this.generateForm.value['nbAdd'];) {
-      let a = this.generateRandomNumber(this.generateForm.value['minA'], this.generateForm.value['maxA']);
-      let b = this.generateRandomNumber(this.generateForm.value['minB'], this.generateForm.value['maxB']);
+      let a = this.homeService.generateRandomNumber(this.generateForm.value['minA'], this.generateForm.value['maxA']);
+      let b = this.homeService.generateRandomNumber(this.generateForm.value['minB'], this.generateForm.value['maxB']);
       let calculation = '' + a + ' + ' + b + " = ______";
       if(!this.calculations.includes(calculation)) {
         this.calculations.push(calculation);
@@ -75,8 +77,8 @@ export class HomeComponent implements OnInit {
   generateSubs() {
 
     for(var i = 0; i < this.generateForm.value['nbSub'];) {
-      let a = this.generateRandomNumber(this.generateForm.value['minA'], this.generateForm.value['maxA']);
-      let b = this.generateRandomNumber(this.generateForm.value['minB'], this.generateForm.value['maxB']);
+      let a = this.homeService.generateRandomNumber(this.generateForm.value['minA'], this.generateForm.value['maxA']);
+      let b = this.homeService.generateRandomNumber(this.generateForm.value['minB'], this.generateForm.value['maxB']);
       let calculation = '' + a + ' - ' + b + " = ______";
       if(!this.calculations.includes(calculation)) {
         this.calculations.push(calculation);
@@ -88,8 +90,8 @@ export class HomeComponent implements OnInit {
   generateMuls() {
 
     for(var i = 0; i < this.generateForm.value['nbMul'];) {
-      let a = this.generateRandomNumber(this.generateForm.value['minA'], this.generateForm.value['maxA']);
-      let b = this.generateRandomNumber(this.generateForm.value['minB'], this.generateForm.value['maxB']);
+      let a = this.homeService.generateRandomNumber(this.generateForm.value['minA'], this.generateForm.value['maxA']);
+      let b = this.homeService.generateRandomNumber(this.generateForm.value['minB'], this.generateForm.value['maxB']);
       let calculation = '' + a + ' x ' + b + " = ______";
       if(!this.calculations.includes(calculation)) {
         this.calculations.push(calculation);
@@ -101,8 +103,8 @@ export class HomeComponent implements OnInit {
   generateDivs() {
 
     for(var i = 0; i < this.generateForm.value['nbDiv'];) {
-      let a = this.generateRandomNumber(this.generateForm.value['minA'], this.generateForm.value['maxA']);
-      let b = this.generateRandomNumber(this.generateForm.value['minB'], this.generateForm.value['maxB']);
+      let a = this.homeService.generateRandomNumber(this.generateForm.value['minA'], this.generateForm.value['maxA']);
+      let b = this.homeService.generateRandomNumber(this.generateForm.value['minB'], this.generateForm.value['maxB']);
       let calculation = '' + a + ' : ' + b + " = ______";
       if(!this.calculations.includes(calculation)) {
         this.calculations.push(calculation);
@@ -111,9 +113,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  generateRandomNumber(min, max) {
-    return Math.ceil((Math.random() * max) + min);
-  }
+
 
   generatePDF() {
 

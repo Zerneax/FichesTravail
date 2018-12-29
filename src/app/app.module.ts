@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 
+import { HomeService } from './services/home/home.service';
+
 import { SuiModule } from 'ng2-semantic-ui';
 
 @NgModule({
@@ -20,7 +22,9 @@ import { SuiModule } from 'ng2-semantic-ui';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    HomeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

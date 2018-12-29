@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, ValidatorFn, AbstractControl } from '@angular/forms';
 import { HomeService } from '../services/home/home.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { HomeService } from '../services/home/home.service';
 })
 export class HomeComponent implements OnInit {
 
+  test: String = "test";
   generateForm: FormGroup;
   calculations: Array<String> = [];
 
@@ -76,4 +77,19 @@ export class HomeComponent implements OnInit {
     this.generateCalculations();
     this.generatePDF();
   }
+
+  // checkBorneSup(control: FormControl) {
+  //   //console.log("test: " + this.test);
+  //   if(control.value != "") {
+  //     let borne = control.value;
+  //     if(this.generateForm.value['minA'] == undefined ) {
+  //       return { isInvalid: true};
+  //     } else if ( borne < this.generateForm.value['minA']) {
+  //       return { isInvalid: true};
+  //     }
+  //   }
+  //
+  //   return null;
+  // }
+
 }

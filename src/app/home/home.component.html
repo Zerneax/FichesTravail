@@ -1,0 +1,112 @@
+<div class="ui container">
+  <div class="top">
+    <form class="ui form" [formGroup]="generateForm" (ngSubmit)="submit()">
+        <h1 class="ui blue dividing header title">Informations de génération</h1>
+        <div class="row">
+          <h4 class="ui dividing header title">nombre A</h4>
+          <div class="inline fields">
+            <div class="eight wide field">
+              <div class="ui labeled input">
+                <div class="ui label">
+                  entre
+                </div>
+                <input type="number" name="minA" placeholder="..." formControlName="minA">
+              </div>
+            </div>
+            <div class="eight wide field">
+              <div class="ui labeled input">
+                <div class="ui label">
+                  et
+                </div>
+                <input type="number" name="maxA" placeholder="..." formControlName="maxA">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <h4 class="ui dividing header title">nombre B</h4>
+          <div class="inline fields">
+            <div class="eight wide field">
+              <div class="ui labeled input">
+                <div class="ui label">
+                  entre
+                </div>
+                <input type="number" name="minB" placeholder="..." formControlName="minB">
+              </div>
+            </div>
+            <div class="eight wide field">
+              <div class="ui labeled input">
+                <div class="ui label">
+                  et
+                </div>
+                <input type="number" name="maxB" placeholder="..." formControlName="maxB">
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="inline fields">
+        <div class="two wide field">
+          <div class="ui checkbox">
+            <input type="checkbox" name="add" id="add" formControlName="add">
+            <label>Addition</label>
+          </div>
+        </div>
+        <div class="two wide field" *ngIf="generateForm.value['add']">
+          <div class="ui labeled input" id="inputAdd">
+            <div class="ui basic label">
+              nb
+            </div>
+            <input type="number" name="nbAdd" placeholder="..." formControlName="nbAdd" >
+          </div>
+        </div>
+        <div class="two wide field">
+          <div class="ui checkbox">
+            <input type="checkbox" name="sub" id="sub" formControlName="sub">
+            <label>Soustraction</label>
+          </div>
+        </div>
+        <div class="two wide field" *ngIf="generateForm.value['sub']">
+          <div class="ui labeled input" id="inputSub">
+            <div class="ui basic label">
+              nb
+            </div>
+            <input type="number" name="nbSub" placeholder="..." formControlName="nbSub">
+          </div>
+        </div>
+        <div class="two wide field">
+          <div class="ui checkbox">
+            <input type="checkbox" name="mul" id="mul" formControlName="mul">
+            <label>Multiplication</label>
+          </div>
+        </div>
+        <div class="two wide field" *ngIf="generateForm.value['mul']">
+          <div class="ui labeled input" id="inputMul">
+            <div class="ui basic label">
+              nb
+            </div>
+            <input type="number" name="nbMul" placeholder="..." formControlName="nbMul">
+          </div>
+        </div>
+        <div class="two wide field">
+          <div class="ui checkbox" >
+            <input type="checkbox" name="div" id="div" formControlName="div">
+            <label>Division</label>
+          </div>
+        </div>
+        <div class="two wide field" *ngIf="generateForm.value['div']">
+          <div class="ui labeled input" id="inputDiv">
+            <div class="ui basic label">
+              nb
+            </div>
+            <input type="number" name="nbDiv" placeholder="..." formControlName="nbDiv">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="center aligned column">
+          <button class="center ui primary button" type="submit" [disabled]="generateForm.invalid"> Générer PDF </button>
+        </div>
+      </div>
+      </form>
+  </div>
+</div>

@@ -28,17 +28,9 @@ export class HomeService {
     return Math.ceil((Math.random() * max) + min);
   }
 
-  generateBInfToA(a, b) {
-
-  }
-
-  generateAAndB(a, b) {
-
-  }
-  // test
-  generateAdds(nbAdd) {
+  generateCalculations(nbcalculation, operand) {
     let calculations: Array<String> = [];
-    for(var i = 0; i < nbAdd;) {
+    for(var i = 0; i < nbcalculation;) {
       let a, b;
 
       if(this.inf) {
@@ -50,7 +42,7 @@ export class HomeService {
         a = this.generateRandomNumber(this.minA, this.maxA);
         b = this.generateRandomNumber(this.minB, this.maxB);
       }
-      let calculation = '' + a + ' + ' + b + " = ______";
+      let calculation = '' + a + operand + b + " = ______";
       if(!calculations.includes(calculation)) {
         calculations.push(calculation);
         i ++;
@@ -60,78 +52,6 @@ export class HomeService {
     return calculations;
   }
 
-  generateSubs(nbSub) {
-    let calculations : Array<String> = [];
-    for(var i = 0; i < nbSub;) {
-      let a, b;
-
-      if(this.inf) {
-        do {
-          a = this.generateRandomNumber(this.minA, this.maxA);
-          b = this.generateRandomNumber(this.minB, this.maxB);
-        } while(b > a);
-      } else {
-        a = this.generateRandomNumber(this.minA, this.maxA);
-        b = this.generateRandomNumber(this.minB, this.maxB);
-      }
-
-      let calculation = '' + a + ' - ' + b + " = ______";
-      if(!calculations.includes(calculation)) {
-        calculations.push(calculation);
-        i ++;
-      }
-    }
-    return calculations;
-  }
-
-  generateMuls(nbMul) {
-    let calculations : Array<String> = [];
-    for(var i = 0; i < nbMul;) {
-      let a, b;
-
-      if(this.inf) {
-        do {
-          a = this.generateRandomNumber(this.minA, this.maxA);
-          b = this.generateRandomNumber(this.minB, this.maxB);
-        } while(b > a);
-      } else {
-        a = this.generateRandomNumber(this.minA, this.maxA);
-        b = this.generateRandomNumber(this.minB, this.maxB);
-      }
-
-      let calculation = '' + a + ' x ' + b + " = ______";
-      if(!calculations.includes(calculation)) {
-        calculations.push(calculation);
-        i ++;
-      }
-    }
-    return calculations;
-  }
-
-
-  generateDivs(nbDiv) {
-    let calculations : Array<String> = [];
-    for(var i = 0; i < nbDiv;) {
-      let a, b;
-
-      if(this.inf) {
-        do {
-          a = this.generateRandomNumber(this.minA, this.maxA);
-          b = this.generateRandomNumber(this.minB, this.maxB);
-        } while(b > a);
-      } else {
-        a = this.generateRandomNumber(this.minA, this.maxA);
-        b = this.generateRandomNumber(this.minB, this.maxB);
-      }
-      
-      let calculation = '' + a + ' : ' + b + " = ______";
-      if(!calculations.includes(calculation)) {
-        calculations.push(calculation);
-        i ++;
-      }
-    }
-    return calculations;
-  }
 
   generatePDF(calculations) {
 

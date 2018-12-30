@@ -53,19 +53,19 @@ export class HomeComponent implements OnInit {
     this.homeService.setInformations(inf, minA, maxA, minB, maxB);
 
     if( nbAdd != undefined) {
-      this.calculations = this.calculations.concat(this.homeService.generateAdds(nbAdd));
+      this.calculations = this.calculations.concat(this.homeService.generateCalculations(nbAdd, ' + '));
     }
 
     if( nbSub != undefined) {
-      this.calculations = this.calculations.concat(this.homeService.generateSubs(nbSub));
+      this.calculations = this.calculations.concat(this.homeService.generateCalculations(nbSub, ' - '));
     }
 
     if( nbMul != undefined) {
-      this.calculations = this.calculations.concat(this.homeService.generateMuls(nbMul));
+      this.calculations = this.calculations.concat(this.homeService.generateCalculations(nbMul, ' x '));
     }
 
     if( nbDiv != undefined) {
-      this.calculations = this.calculations.concat(this.homeService.generateDivs(nbDiv));
+      this.calculations = this.calculations.concat(this.homeService.generateCalculations(nbDiv, ' : '));
     }
 
     for(var i = 0; i < this.calculations.length; i ++) {

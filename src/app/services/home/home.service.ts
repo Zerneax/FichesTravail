@@ -25,10 +25,30 @@ export class HomeService {
   }
 
   generateRandomNumber(min, max) {
-    return Math.ceil((Math.random() * max) + min);
+    // min = Math.ceil(min);
+    // max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+    //Math.floor(Math.random() * (max - (min + 1))) + min;
   }
 
   generateCalculations(nbcalculation, operand) {
+    let calculations: Array<String> = [];
+    for(var i = 0; i < nbcalculation;) {
+      let a, b;
+      a = this.generateRandomNumber(this.minA, this.maxA);
+      b = this.generateRandomNumber(this.minB, this.maxB);
+
+      let calculation = '' + a + operand + b + " = ______";
+       if(!calculations.includes(calculation)) {
+        calculations.push(calculation);
+        i ++;
+      }
+
+    }
+    return calculations;
+  }
+
+  generateSubCalculations(nbcalculation) {
     let calculations: Array<String> = [];
     for(var i = 0; i < nbcalculation;) {
       let a, b;
@@ -42,8 +62,8 @@ export class HomeService {
         a = this.generateRandomNumber(this.minA, this.maxA);
         b = this.generateRandomNumber(this.minB, this.maxB);
       }
-      let calculation = '' + a + operand + b + " = ______";
-      if(!calculations.includes(calculation)) {
+      let calculation = '' + a + ' -' + b + " = ______";
+       if(!calculations.includes(calculation)) {
         calculations.push(calculation);
         i ++;
       }

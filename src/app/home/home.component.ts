@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, ValidatorFn, AbstractControl } from '@angular/forms';
 import { HomeService } from '../services/home/home.service';
 
@@ -12,12 +12,16 @@ export class HomeComponent implements OnInit {
   test: String = "test";
   generateForm: FormGroup;
   calculations: Array<String> = [];
+  errorMessage: any = {};
 
   constructor(private formBuilder: FormBuilder,
     private homeService: HomeService) { }
 
   ngOnInit() {
     this.initForm();
+    this.errorMessage.header = "";
+    this.errorMessage.information = "";
+    this.errorMessage.display = false;
   }
 
   initForm() {
@@ -78,8 +82,79 @@ export class HomeComponent implements OnInit {
   }
 
   submit() {
+    this.calculations = [];
     this.generateCalculations();
     this.generatePDF();
+  }
+
+  checkBornes() {
+    if(this.generateForm.value['minA'] != "" && this.generateForm.value['maxA'] != "" && this.generateForm.value['maxA'] <= this.generateForm.value['minA']) {
+      this.errorMessage.header = "Generation impossible dans cette configuration !";
+      this.errorMessage.information = "Le maximum de A ne peut pas être inférieur au minimum de A.";
+      this.errorMessage.display = true;
+
+    } else if (this.generateForm.value['minB'] != "" && this.generateForm.value['maxB'] != "" && this.generateForm.value['maxB'] <= this.generateForm.value['minB']) {
+      this.errorMessage.header = "Generation impossible dans cette configuration !";
+      this.errorMessage.information = "Le maximum de B ne peut pas être inférieur au minimum de B."
+      this.errorMessage.display = true;
+
+    } else {
+      this.errorMessage.header = "";
+      this.errorMessage.information = "";
+      this.errorMessage.display = false;
+
+    }
+  }
+
+  checkMaxDifferentCalculations() {
+
+    this.errorMessage.header = "";
+    this.errorMessage.information = "";
+    this.errorMessage.display = false;
+
+    if(this.generateForm.value['minA'] != ""
+        && this.generateForm.value['maxA'] != ""
+        && this.generateForm.value['minB'] != ""
+        && this.generateForm.value['maxB'] != "") {
+      let nbMaxNumberA = (this.generateForm.value['maxA'] - this.generateForm.value['minA']) + 1 ;
+      let nbMaxNumberB = (this.generateForm.value['maxB'] - this.generateForm.value['minB']) + 1 ;
+
+      let max = nbMaxNumberA * nbMaxNumberB;
+
+
+      let nbAdd = this.generateForm.value['nbAdd'];
+      let nbSub = this.generateForm.value['nbSub'];
+      let nbMul = this.generateForm.value['nbMul'];
+      let nbDiv = this.generateForm.value['nbDiv'];
+
+      if(nbAdd != undefined && nbAdd > max) {
+
+        this.errorMessage.header = "Generation impossible dans cette configuration !";
+        this.errorMessage.information = "Il n'est pas possible de générer plus de " + max + " additions différentes."
+        this.errorMessage.display = true;
+
+      } else if(nbSub != undefined && nbSub > max) {
+
+        this.errorMessage.header = "Generation impossible dans cette configuration !";
+        this.errorMessage.information = "Il n'est pas possible de générer plus de " + max + " soustractions différentes."
+        this.errorMessage.display = true;
+
+      } else if(nbMul != undefined && nbMul > max) {
+
+        this.errorMessage.header = "Generation impossible dans cette configuration !";
+        this.errorMessage.information = "Il n'est pas possible de générer plus de " + max + " multiplications différentes."
+        this.errorMessage.display = true;
+
+      }else if(nbDiv != undefined && nbDiv > max) {
+
+        this.errorMessage.header = "Generation impossible dans cette configuration !";
+        this.errorMessage.information = "Il n'est pas possible de générer plus de " + max + " divisions différentes."
+        this.errorMessage.display = true;
+
+      }
+
+    }
+
   }
 
   // checkBorneSup(control: FormControl) {

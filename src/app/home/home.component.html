@@ -1,5 +1,12 @@
 <div class="ui container">
   <div class="top">
+    <div class="ui negative message" *ngIf="errorMessage.display">
+      <div class="header">
+        {{errorMessage.header}}
+      </div>
+      <p>{{errorMessage.information}}</p>
+    </div>
+
     <form class="ui form" [formGroup]="generateForm" (ngSubmit)="submit()">
         <h1 class="ui blue dividing header title">Informations de génération</h1>
         <div class="row">
@@ -10,7 +17,7 @@
                 <div class="ui label">
                   entre
                 </div>
-                <input type="number" min="0" name="minA" placeholder="..." formControlName="minA">
+                <input type="number" min="0" name="minA" placeholder="..." formControlName="minA" (input)="checkBornes()">
               </div>
             </div>
             <div class="eight wide field">
@@ -18,7 +25,7 @@
                 <div class="ui label">
                   et
                 </div>
-                <input type="number" [min]="generateForm.value['minA'] + 1" name="maxA" placeholder="..." formControlName="maxA">
+                <input type="number" [min]="generateForm.value['minA'] + 1" name="maxA" placeholder="..." formControlName="maxA" (input)="checkBornes()">
               </div>
             </div>
           </div>
@@ -31,7 +38,7 @@
                 <div class="ui label">
                   entre
                 </div>
-                <input type="number" min="0" name="minB" placeholder="..." formControlName="minB">
+                <input type="number" min="0" name="minB" placeholder="..." formControlName="minB" (change)="checkBornes()">
               </div>
             </div>
             <div class="six wide field">
@@ -39,7 +46,7 @@
                 <div class="ui label">
                   et
                 </div>
-                <input type="number" [min]="generateForm.value['minB'] + 1" name="maxB" placeholder="..." formControlName="maxB">
+                <input type="number" [min]="generateForm.value['minB'] + 1" name="maxB" placeholder="..." formControlName="maxB" (change)="checkBornes()">
               </div>
             </div>
             <div class="two wide field">
@@ -62,7 +69,7 @@
             <div class="ui basic label">
               nb
             </div>
-            <input type="number" name="nbAdd" placeholder="..." formControlName="nbAdd" >
+            <input type="number" name="nbAdd" placeholder="..." formControlName="nbAdd" (input)="checkMaxDifferentCalculations()">
           </div>
         </div>
         <div class="two wide field">
@@ -76,7 +83,7 @@
             <div class="ui basic label">
               nb
             </div>
-            <input type="number" name="nbSub" placeholder="..." formControlName="nbSub">
+            <input type="number" name="nbSub" placeholder="..." formControlName="nbSub" (input)="checkMaxDifferentCalculations()">
           </div>
         </div>
         <div class="two wide field">
@@ -90,7 +97,7 @@
             <div class="ui basic label">
               nb
             </div>
-            <input type="number" name="nbMul" placeholder="..." formControlName="nbMul">
+            <input type="number" name="nbMul" placeholder="..." formControlName="nbMul" (input)="checkMaxDifferentCalculations()">
           </div>
         </div>
         <div class="two wide field">
@@ -104,13 +111,13 @@
             <div class="ui basic label">
               nb
             </div>
-            <input type="number" name="nbDiv" placeholder="..." formControlName="nbDiv">
+            <input type="number" name="nbDiv" placeholder="..." formControlName="nbDiv" (input)="checkMaxDifferentCalculations()">
           </div>
         </div>
       </div>
       <div class="row">
         <div class="center aligned column">
-          <button class="center ui primary button" type="submit" [disabled]="generateForm.invalid"> Générer PDF </button>
+          <button class="center ui primary button" type="submit" [disabled]="generateForm.invalid || errorMessage.display"> Générer PDF </button>
         </div>
       </div>
       </form>

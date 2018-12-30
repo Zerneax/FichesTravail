@@ -10,7 +10,7 @@
                 <div class="ui label">
                   entre
                 </div>
-                <input type="number" name="minA" placeholder="..." formControlName="minA">
+                <input type="number" min="0" name="minA" placeholder="..." formControlName="minA">
               </div>
             </div>
             <div class="eight wide field">
@@ -18,7 +18,7 @@
                 <div class="ui label">
                   et
                 </div>
-                <input type="number" name="maxA" placeholder="..." formControlName="maxA">
+                <input type="number" [min]="generateForm.value['minA'] + 1" name="maxA" placeholder="..." formControlName="maxA">
               </div>
             </div>
           </div>
@@ -31,15 +31,21 @@
                 <div class="ui label">
                   entre
                 </div>
-                <input type="number" name="minB" placeholder="..." formControlName="minB">
+                <input type="number" min="0" name="minB" placeholder="..." formControlName="minB">
               </div>
             </div>
-            <div class="eight wide field">
+            <div class="six wide field">
               <div class="ui labeled input">
                 <div class="ui label">
                   et
                 </div>
-                <input type="number" name="maxB" placeholder="..." formControlName="maxB">
+                <input type="number" [min]="generateForm.value['minB'] + 1" name="maxB" placeholder="..." formControlName="maxB">
+              </div>
+            </div>
+            <div class="two wide field">
+              <div class="ui checkbox">
+                <input type="checkbox" name="add" id="add" formControlName="inf">
+                <label>B < A ? </label>
               </div>
             </div>
           </div>

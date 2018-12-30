@@ -6,17 +6,50 @@ import jsPDF from 'jspdf';
 })
 export class HomeService {
 
+  inf: boolean = false;
+  minA: number = 0;
+  minB: number = 0;
+  maxA: number = 0;
+  maxB: number = 0;
+
   constructor() { }
+
+
+  setInformations(isInf, minA, maxA, minB, maxB) {
+    if(isInf != "")
+      this.inf = isInf;
+    this.minA = minA;
+    this.minB = minB;
+    this.maxA = maxA;
+    this.maxB = maxB;
+  }
 
   generateRandomNumber(min, max) {
     return Math.ceil((Math.random() * max) + min);
   }
 
-  generateAdds(nbAdd, minA, maxA, minB, maxB) {
+  generateBInfToA(a, b) {
+
+  }
+
+  generateAAndB(a, b) {
+
+  }
+  // test
+  generateAdds(nbAdd) {
     let calculations: Array<String> = [];
     for(var i = 0; i < nbAdd;) {
-      let a = this.generateRandomNumber(minA, maxA);
-      let b = this.generateRandomNumber(minB, maxB);
+      let a, b;
+
+      if(this.inf) {
+        do {
+          a = this.generateRandomNumber(this.minA, this.maxA);
+          b = this.generateRandomNumber(this.minB, this.maxB);
+        } while(b > a);
+      } else {
+        a = this.generateRandomNumber(this.minA, this.maxA);
+        b = this.generateRandomNumber(this.minB, this.maxB);
+      }
       let calculation = '' + a + ' + ' + b + " = ______";
       if(!calculations.includes(calculation)) {
         calculations.push(calculation);
@@ -27,11 +60,21 @@ export class HomeService {
     return calculations;
   }
 
-  generateSubs(nbSub, minA, maxA, minB, maxB) {
+  generateSubs(nbSub) {
     let calculations : Array<String> = [];
     for(var i = 0; i < nbSub;) {
-      let a = this.generateRandomNumber(minA, maxA);
-      let b = this.generateRandomNumber(minB, maxB);
+      let a, b;
+
+      if(this.inf) {
+        do {
+          a = this.generateRandomNumber(this.minA, this.maxA);
+          b = this.generateRandomNumber(this.minB, this.maxB);
+        } while(b > a);
+      } else {
+        a = this.generateRandomNumber(this.minA, this.maxA);
+        b = this.generateRandomNumber(this.minB, this.maxB);
+      }
+
       let calculation = '' + a + ' - ' + b + " = ______";
       if(!calculations.includes(calculation)) {
         calculations.push(calculation);
@@ -41,11 +84,21 @@ export class HomeService {
     return calculations;
   }
 
-  generateMuls(nbMul, minA, maxA, minB, maxB) {
+  generateMuls(nbMul) {
     let calculations : Array<String> = [];
     for(var i = 0; i < nbMul;) {
-      let a = this.generateRandomNumber(minA, maxA);
-      let b = this.generateRandomNumber(minB, maxB);
+      let a, b;
+
+      if(this.inf) {
+        do {
+          a = this.generateRandomNumber(this.minA, this.maxA);
+          b = this.generateRandomNumber(this.minB, this.maxB);
+        } while(b > a);
+      } else {
+        a = this.generateRandomNumber(this.minA, this.maxA);
+        b = this.generateRandomNumber(this.minB, this.maxB);
+      }
+
       let calculation = '' + a + ' x ' + b + " = ______";
       if(!calculations.includes(calculation)) {
         calculations.push(calculation);
@@ -56,11 +109,21 @@ export class HomeService {
   }
 
 
-  generateDivs(nbDiv, minA, maxA, minB, maxB) {
+  generateDivs(nbDiv) {
     let calculations : Array<String> = [];
     for(var i = 0; i < nbDiv;) {
-      let a = this.generateRandomNumber(minA, maxA);
-      let b = this.generateRandomNumber(minB, maxB);
+      let a, b;
+
+      if(this.inf) {
+        do {
+          a = this.generateRandomNumber(this.minA, this.maxA);
+          b = this.generateRandomNumber(this.minB, this.maxB);
+        } while(b > a);
+      } else {
+        a = this.generateRandomNumber(this.minA, this.maxA);
+        b = this.generateRandomNumber(this.minB, this.maxB);
+      }
+      
       let calculation = '' + a + ' : ' + b + " = ______";
       if(!calculations.includes(calculation)) {
         calculations.push(calculation);

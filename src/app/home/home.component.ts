@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
       maxA: ['', Validators.required],
       minB: ['', Validators.required],
       maxB: ['', Validators.required],
+      inf: [''],
       add: [''],
       nbAdd: [''],
       sub: [''],
@@ -47,21 +48,24 @@ export class HomeComponent implements OnInit {
     let nbSub = this.generateForm.value['nbSub'];
     let nbMul = this.generateForm.value['nbMul'];
     let nbDiv = this.generateForm.value['nbDiv'];
+    let inf = this.generateForm.value['inf'];
+
+    this.homeService.setInformations(inf, minA, maxA, minB, maxB);
 
     if( nbAdd != undefined) {
-      this.calculations = this.calculations.concat(this.homeService.generateAdds(nbAdd, minA, maxA, minB, maxB));
+      this.calculations = this.calculations.concat(this.homeService.generateAdds(nbAdd));
     }
 
     if( nbSub != undefined) {
-      this.calculations = this.calculations.concat(this.homeService.generateSubs(nbSub, minA, maxA, minB, maxB));
+      this.calculations = this.calculations.concat(this.homeService.generateSubs(nbSub));
     }
 
     if( nbMul != undefined) {
-      this.calculations = this.calculations.concat(this.homeService.generateMuls(nbMul, minA, maxA, minB, maxB));
+      this.calculations = this.calculations.concat(this.homeService.generateMuls(nbMul));
     }
 
     if( nbDiv != undefined) {
-      this.calculations = this.calculations.concat(this.homeService.generateDivs(nbDiv, minA, maxA, minB, maxB));
+      this.calculations = this.calculations.concat(this.homeService.generateDivs(nbDiv));
     }
 
     for(var i = 0; i < this.calculations.length; i ++) {

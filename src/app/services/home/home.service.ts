@@ -6,7 +6,7 @@ import jsPDF from 'jspdf';
 })
 export class HomeService {
 
-  inf: boolean = false;
+  bUnderA: boolean = false;
   minA: number = 0;
   minB: number = 0;
   maxA: number = 0;
@@ -17,7 +17,7 @@ export class HomeService {
 
   setInformations(isInf, minA, maxA, minB, maxB) {
     if(isInf != "")
-      this.inf = isInf;
+      this.bUnderA = isInf;
     this.minA = minA;
     this.minB = minB;
     this.maxA = maxA;
@@ -53,7 +53,7 @@ export class HomeService {
     for(var i = 0; i < nbcalculation;) {
       let a, b;
 
-      if(this.inf) {
+      if(this.bUnderA) {
         do {
           a = this.generateRandomNumber(this.minA, this.maxA);
           b = this.generateRandomNumber(this.minB, this.maxB);

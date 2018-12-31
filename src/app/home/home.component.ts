@@ -9,7 +9,6 @@ import { HomeService } from '../services/home/home.service';
 })
 export class HomeComponent implements OnInit {
 
-  test: String = "test";
   generateForm: FormGroup;
   calculations: Array<String> = [];
   errorMessage: any = {};
@@ -30,7 +29,7 @@ export class HomeComponent implements OnInit {
       maxA: ['', Validators.required],
       minB: ['', Validators.required],
       maxB: ['', Validators.required],
-      inf: [''],
+      bUnderA: [''],
       add: [''],
       nbAdd: [''],
       sub: [''],
@@ -52,9 +51,9 @@ export class HomeComponent implements OnInit {
     let nbSub = this.generateForm.value['nbSub'];
     let nbMul = this.generateForm.value['nbMul'];
     let nbDiv = this.generateForm.value['nbDiv'];
-    let inf = this.generateForm.value['inf'];
+    let bUnderA = this.generateForm.value['bUnderA'];
 
-    this.homeService.setInformations(inf, minA, maxA, minB, maxB);
+    this.homeService.setInformations(bUnderA, minA, maxA, minB, maxB);
 
     if( nbAdd != undefined) {
       this.calculations = this.calculations.concat(this.homeService.generateCalculations(nbAdd, ' + '));
@@ -90,12 +89,12 @@ export class HomeComponent implements OnInit {
   checkBornes() {
     if(this.generateForm.value['minA'] != "" && this.generateForm.value['maxA'] != "" && this.generateForm.value['maxA'] <= this.generateForm.value['minA']) {
       this.errorMessage.header = "Generation impossible dans cette configuration !";
-      this.errorMessage.information = "Le maximum de A ne peut pas être inférieur au minimum de A.";
+      this.errorMessage.information = "Le maximum de A ne peut pas être bUnderAérieur au minimum de A.";
       this.errorMessage.display = true;
 
     } else if (this.generateForm.value['minB'] != "" && this.generateForm.value['maxB'] != "" && this.generateForm.value['maxB'] <= this.generateForm.value['minB']) {
       this.errorMessage.header = "Generation impossible dans cette configuration !";
-      this.errorMessage.information = "Le maximum de B ne peut pas être inférieur au minimum de B."
+      this.errorMessage.information = "Le maximum de B ne peut pas être bUnderAérieur au minimum de B."
       this.errorMessage.display = true;
 
     } else {
@@ -126,7 +125,7 @@ export class HomeComponent implements OnInit {
       let nbSub = this.generateForm.value['nbSub'];
       let nbMul = this.generateForm.value['nbMul'];
       let nbDiv = this.generateForm.value['nbDiv'];
-      let inf = this.generateForm.value['inf'];
+      let bUnderA = this.generateForm.value['bUnderA'];
 
       if(nbAdd != undefined && nbAdd > max) {
 
@@ -135,7 +134,7 @@ export class HomeComponent implements OnInit {
         this.errorMessage.display = true;
 
       } else if(nbSub != undefined) {
-        if(inf == true) {
+        if(bUnderA == true) {
           let maxPositives = this.maxPositivesCalculations(this.generateForm.value['minA'], this.generateForm.value['maxA'], this.generateForm.value['minB'], this.generateForm.value['maxB']);
           if( nbSub > maxPositives) {
             this.errorMessage.header = "Generation impossible dans cette configuration !";
@@ -183,19 +182,5 @@ export class HomeComponent implements OnInit {
 
     return positif;
   }
-
-  // checkBorneSup(control: FormControl) {
-  //   //console.log("test: " + this.test);
-  //   if(control.value != "") {
-  //     let borne = control.value;
-  //     if(this.generateForm.value['minA'] == undefined ) {
-  //       return { isInvalid: true};
-  //     } else if ( borne < this.generateForm.value['minA']) {
-  //       return { isInvalid: true};
-  //     }
-  //   }
-  //
-  //   return null;
-  // }
 
 }

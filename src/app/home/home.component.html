@@ -65,12 +65,7 @@
           </div>
         </div>
         <div class="two wide field" *ngIf="generateForm.value['add']">
-          <div class="ui labeled input" id="inputAdd">
-            <div class="ui basic label">
-              nb
-            </div>
-            <input type="number" name="nbAdd" placeholder="..." formControlName="nbAdd" (input)="checkMaxDifferentCalculations()">
-          </div>
+            <input type="number" min="0" max="500" name="nbAdd" placeholder="nb" formControlName="nbAdd" (input)="checkMaxDifferentCalculations()">
         </div>
         <div class="two wide field">
           <div class="ui checkbox">
@@ -79,12 +74,7 @@
           </div>
         </div>
         <div class="two wide field" *ngIf="generateForm.value['sub']">
-          <div class="ui labeled input" id="inputSub">
-            <div class="ui basic label">
-              nb
-            </div>
-            <input type="number" name="nbSub" placeholder="..." formControlName="nbSub" (input)="checkMaxDifferentCalculations()">
-          </div>
+            <input type="number" min="0" max="500" name="nbSub" placeholder="nb" formControlName="nbSub" (input)="checkMaxDifferentCalculations()">
         </div>
         <div class="two wide field">
           <div class="ui checkbox">
@@ -93,12 +83,7 @@
           </div>
         </div>
         <div class="two wide field" *ngIf="generateForm.value['mul']">
-          <div class="ui labeled input" id="inputMul">
-            <div class="ui basic label">
-              nb
-            </div>
-            <input type="number" name="nbMul" placeholder="..." formControlName="nbMul" (input)="checkMaxDifferentCalculations()">
-          </div>
+            <input type="number" min="0" max="500" name="nbMul" placeholder="nb" formControlName="nbMul" (input)="checkMaxDifferentCalculations()">
         </div>
         <div class="two wide field">
           <div class="ui checkbox" >
@@ -107,12 +92,7 @@
           </div>
         </div>
         <div class="two wide field" *ngIf="generateForm.value['div']">
-          <div class="ui labeled input" id="inputDiv">
-            <div class="ui basic label">
-              nb
-            </div>
-            <input type="number" name="nbDiv" placeholder="..." formControlName="nbDiv" (input)="checkMaxDifferentCalculations()">
-          </div>
+            <input type="number" min="0" max="500" name="nbDiv" placeholder="nb" formControlName="nbDiv" (input)="checkMaxDifferentCalculations()">
         </div>
       </div>
       <div class="row">

@@ -70,10 +70,6 @@ export class HomeComponent implements OnInit {
     if( nbDiv != undefined) {
       this.calculations = this.calculations.concat(this.homeService.generateCalculations(nbDiv, ' : '));
     }
-
-    for(var i = 0; i < this.calculations.length; i ++) {
-      console.log("" + this.calculations[i]);
-    }
   }
 
   generatePDF() {

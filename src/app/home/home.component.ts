@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
     }
 
     if( nbSub != undefined) {
-      this.calculations = this.calculations.concat(this.homeService.generateCalculations(nbSub, ' - '));
+      this.calculations = this.calculations.concat(this.homeService.generateSubCalculations(nbSub));
     }
 
     if( nbMul != undefined) {
@@ -126,6 +126,7 @@ export class HomeComponent implements OnInit {
       let nbSub = this.generateForm.value['nbSub'];
       let nbMul = this.generateForm.value['nbMul'];
       let nbDiv = this.generateForm.value['nbDiv'];
+      let inf = this.generateForm.value['inf'];
 
       if(nbAdd != undefined && nbAdd > max) {
 
@@ -133,11 +134,22 @@ export class HomeComponent implements OnInit {
         this.errorMessage.information = "Il n'est pas possible de générer plus de " + max + " additions différentes."
         this.errorMessage.display = true;
 
-      } else if(nbSub != undefined && nbSub > max) {
+      } else if(nbSub != undefined) {
+        if(inf == true) {
+          let maxPositives = this.maxPositivesCalculations(this.generateForm.value['minA'], this.generateForm.value['maxA'], this.generateForm.value['minB'], this.generateForm.value['maxB']);
+          if( nbSub > maxPositives) {
+            this.errorMessage.header = "Generation impossible dans cette configuration !";
+            this.errorMessage.information = "Il n'est pas possible de générer plus de " + maxPositives + " soustractions différentes."
+            this.errorMessage.display = true;
+          }
+        } else {
+          if( nbSub > max) {
+            this.errorMessage.header = "Generation impossible dans cette configuration !";
+            this.errorMessage.information = "Il n'est pas possible de générer plus de " + max + " soustractions différentes."
+            this.errorMessage.display = true;
+          }
+        }
 
-        this.errorMessage.header = "Generation impossible dans cette configuration !";
-        this.errorMessage.information = "Il n'est pas possible de générer plus de " + max + " soustractions différentes."
-        this.errorMessage.display = true;
 
       } else if(nbMul != undefined && nbMul > max) {
 
@@ -155,6 +167,21 @@ export class HomeComponent implements OnInit {
 
     }
 
+  }
+
+  maxPositivesCalculations(minA, maxA, minB, maxB) {
+    let positif = 0;
+      for(var i = minA; i <= maxA; i ++ ) {
+
+        for(var j = minB; j <= maxB; j ++ ) {
+
+          let res = i - j;
+          if(res >= 0)
+              positif += 1;
+        }
+      }
+
+    return positif;
   }
 
   // checkBorneSup(control: FormControl) {

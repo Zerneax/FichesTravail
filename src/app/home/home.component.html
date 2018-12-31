@@ -17,7 +17,7 @@
                 <div class="ui label">
                   entre
                 </div>
-                <input type="number" min="0" name="minA" placeholder="..." formControlName="minA" (input)="checkBornes(); checkMaxDifferentCalculations()">
+                <input type="number" min="0" name="minA" placeholder="..." formControlName="minA" (input)="checkBornes()">
               </div>
             </div>
             <div class="eight wide field">
@@ -25,7 +25,7 @@
                 <div class="ui label">
                   et
                 </div>
-                <input type="number" [min]="generateForm.value['minA'] + 1" name="maxA" placeholder="..." formControlName="maxA" (input)="checkBornes(); checkMaxDifferentCalculations()">
+                <input type="number" [min]="generateForm.value['minA'] + 1" name="maxA" placeholder="..." formControlName="maxA" (input)="checkBornes()">
               </div>
             </div>
           </div>
@@ -38,7 +38,7 @@
                 <div class="ui label">
                   entre
                 </div>
-                <input type="number" min="0" name="minB" placeholder="..." formControlName="minB" (input)="checkBornes(); checkMaxDifferentCalculations()">
+                <input type="number" min="0" name="minB" placeholder="..." formControlName="minB" (input)="checkBornes()">
               </div>
             </div>
             <div class="six wide field">
@@ -46,7 +46,7 @@
                 <div class="ui label">
                   et
                 </div>
-                <input type="number" [min]="generateForm.value['minB'] + 1" name="maxB" placeholder="..." formControlName="maxB" (input)="checkBornes(); checkMaxDifferentCalculations()">
+                <input type="number" [min]="generateForm.value['minB'] + 1" name="maxB" placeholder="..." formControlName="maxB" (input)="checkBornes()">
               </div>
             </div>
             <div class="two wide field">

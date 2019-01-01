@@ -2,7 +2,7 @@ steps:
 - name: gcr.io/cloud-builders/git
   args: ['clone', 'https://github.com/Zerneax/FichesTravail']
 - name: 'gcr.io/cloud-builders/npm'
-  args: ['install', '--no-optional']
+  args: ['install', '']
 - name: 'gcr.io/cloud-builders/npm'
   args: ['run', 'build']
 - name: "gcr.io/cloud-builders/gcloud"

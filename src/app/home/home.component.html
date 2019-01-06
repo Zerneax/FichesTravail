@@ -1,4 +1,7 @@
 <div class="ui container">
+  <sui-dimmer [(isDimmed)]="loadingGeneration" [isClickable]="false" [transition]="fade">
+      <div class="ui text loader">Génération du PDF en cours !</div>
+  </sui-dimmer>
   <div class="top">
     <div class="ui negative message" *ngIf="errorMessage.display">
       <div class="header">
@@ -6,7 +9,6 @@
       </div>
       <p>{{errorMessage.information}}</p>
     </div>
-
     <form class="ui form" [formGroup]="generateForm" (ngSubmit)="submit()">
         <h1 class="ui blue dividing header title">Informations de génération</h1>
         <div class="row">
@@ -50,9 +52,9 @@
               </div>
             </div>
             <div class="two wide field">
-              <div class="ui checkbox" data-tooltip="Indique que la valeur B sera toujours inférieure à A dans l'opération" data-position="top right">
+              <div class="ui checkbox" data-tooltip="Indique que la valeur B sera toujours inférieure à A pour les soustractions" data-position="top right">
                 <input type="checkbox" name="add" id="add" formControlName="bUnderA" (change)="checkBornes(); checkMaxDifferentCalculations()">
-                <label>B < A ? </label>
+                <label>B < A  </label>
               </div>
             </div>
           </div>

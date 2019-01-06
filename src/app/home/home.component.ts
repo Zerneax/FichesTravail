@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   generateForm: FormGroup;
   calculations: Array<String> = [];
   errorMessage: any = {};
+  loadingGeneration: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
     private homeService: HomeService) { }
@@ -77,9 +78,14 @@ export class HomeComponent implements OnInit {
   }
 
   submit() {
-    this.calculations = [];
-    this.generateCalculations();
-    this.generatePDF();
+    this.loadingGeneration = true;
+    setTimeout(() => {
+      this.calculations = [];
+      this.generateCalculations();
+      this.generatePDF();
+      this.loadingGeneration = false;
+    }, 100);
+
   }
 
   checkBornes() {
